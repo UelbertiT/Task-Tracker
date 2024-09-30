@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Hábitos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/historico.css">
+</head>
+<body class="bg-green-50 p-4">
+<div class="container mx-auto my-4">
+    <h1 class="text-center text-green-700 text-3xl font-bold mb-4">Histórico de Hábitos Diários</h1>
+
+    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+        <thead class="bg-green-200">
+        <tr>
+            <th class="py-2 px-4 border-b text-left text-green-800">Data</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Tomar 2 litros de água</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Fazer exercícios</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Ler por 1 hora</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Comer vegetais</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Estudar por 1 hora</th>
+            <th class="py-2 px-4 border-b text-left text-green-800">Dormir por 8 horas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="habito, iterStat : ${historico}" class="${iterStat.even ? 'bg-green-100' : 'bg-green-200'}">
+            <td class="py-2 px-4 border-b" th:text="${habito.data}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.agua != null ? (habito.agua ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.exercicio != null ? (habito.exercicio ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.ler != null ? (habito.ler ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.vegetais != null ? (habito.vegetais ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.estudar != null ? (habito.estudar ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+            <td class="py-2 px-4 border-b" th:text="${habito.dormir != null ? (habito.dormir ? 'Feito' : 'Não feito') : 'Não feito'}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/todasTarefas" class="mt-8 inline-block bg-green-700 text-white font-bold py-3 px-6 rounded hover:bg-green-600 transition duration-300">Voltar</a>
+</div>
+<script>
+    function displayCurrentDate() {
+        const dateElement = document.getElementById('currentDate');
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const currentDate = today.toLocaleDateString('pt-BR', options);
+        dateElement.innerText = ` ${currentDate}`;
+        document.getElementById('currentDateInput').value = currentDate;
+    }
+    displayCurrentDate();
+</script>
+</body>
+</html>

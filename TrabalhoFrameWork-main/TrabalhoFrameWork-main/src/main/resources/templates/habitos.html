@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hábitos Diários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/habitos.css">
+</head>
+<body class="bg-green-100 p-5">
+<div class="container mx-auto">
+    <h1 class="text-center text-4xl font-bold text-green-700 mb-6">Hábitos Diários</h1>
+    <div class="text-center mb-4 text-gray-500" id="currentDate"></div>
+    <div class="habit-list bg-white rounded-lg shadow-md p-5">
+        <form action="/habito/save" method="post">
+            <input type="hidden" id="currentDateInput" name="data">
+            <table class="w-full table-auto border-collapse">
+                <thead>
+                <tr class="bg-green-600 text-white">
+                    <th class="px-4 py-2">Descrição</th>
+                    <th class="px-4 py-2 text-center">Concluída</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Tomar 2 litros de água</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="agua" name="agua" class="transform scale-125"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Fazer exercícios</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="exercicio" name="exercicio" class="transform scale-125"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Ler por 1 hora</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="ler" name="ler" class="transform scale-125"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Comer vegetais</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="vegetais" name="vegetais" class="transform scale-125"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Estudar por 1 hora</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="estudar" name="estudar" class="transform scale-125"></td>
+                </tr>
+                <tr class="border-b border-gray-200">
+                    <td class="px-4 py-3">Dormir por 8 horas</td>
+                    <td class="px-4 py-3 text-center"><input type="checkbox" id="dormir" name="dormir" class="transform scale-125"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="mt-6 flex justify-between">
+                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">Salvar Hábitos</button>
+                <a href="/todasTarefas" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">Voltar</a>
+                <a href="/historico" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">Histórico de Hábitos</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function displayCurrentDate() {
+            const dateElement = document.getElementById('currentDate');
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const currentDate = today.toLocaleDateString('pt-BR', options);
+            dateElement.innerText = ` ${currentDate}`;
+            document.getElementById('currentDateInput').value = currentDate;
+        }
+        displayCurrentDate();
+    </script>
+</div>
+</body>
+</html>
